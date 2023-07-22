@@ -1,7 +1,7 @@
 import React from "react";
 import PokemonApi from "./components/PokemonApi";
 import "./components/style.css";
-import "./App.css";
+
 
 function App() {
   return (
