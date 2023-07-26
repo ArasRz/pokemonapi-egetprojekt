@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import Form from "./Form";
+import React, { useState, useEffect } from "react";
+import PokemonCard from "./PokemonCard";
 
 function PokemonApi() {
-  const [pokemonData, setPokemonData] = useState([]);
+  const [pokemonData, setPokemonData] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  function fetchPokemonData() {
-    fetch(`https://pokeapi.co/api/v2/${pokemonData}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonData(data);
-      })
-      .catch((e) => console.log(e));
-  }
-
-  
+  const fetchPokemonData = async () => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${searchValue}`
+    );
+    const data = await response.json();
+    setPokemonData(data);
+  };
 
   const handleSearch = () => {
     fetchPokemonData();
@@ -28,20 +25,14 @@ function PokemonApi() {
   return (
     <div>
       <div className="input">
-        <input
-          type="text"
-          value={searchValue}
-          onChange={handleChange}
-        />
+      {pokemonData && <PokemonCard pokemonData={pokemonData} />}
+        <input type="text" value={searchValue} onChange={handleChange} />
         <button className="btn" onClick={handleSearch}>
           Search
         </button>
       </div>
-
-      {pokemonData && <Form pokemonData={pokemonData} />}
     </div>
   );
 }
 
 export default PokemonApi;
-
