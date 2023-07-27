@@ -25,12 +25,12 @@ function PokemonApi() {
   return (
     <div>
       <div className="input">
-      {pokemonData && <PokemonCard pokemonData={pokemonData} />}
         <input type="text" value={searchValue} onChange={handleChange} />
         <button className="btn" onClick={handleSearch}>
           Search
         </button>
       </div>
+      {pokemonData && <PokemonCard pokemonData={pokemonData} />}
     </div>
   );
 }
