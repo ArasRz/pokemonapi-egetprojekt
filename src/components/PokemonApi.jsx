@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
 
-// This is called smart component or stateful component
+
 function PokemonApi() {
   const [pokemonData, setPokemonData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
