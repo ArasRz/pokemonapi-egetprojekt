@@ -1,5 +1,8 @@
 import React from "react";
 
+
+
+
 function PokemonCard({ pokemonData }) {
   const pokemonName = pokemonData.name;
   const pokemonAbilities = pokemonData.abilities.map(
@@ -7,9 +10,12 @@ function PokemonCard({ pokemonData }) {
   );
   const pokemonId = pokemonData.id;
   const pokemonImg = pokemonData.sprites.front_default;
-  const pokemonHp = pokemonData.stats.find((stat) => stat.stat.name === "hp")
-    .base_stat;
-  const pokemonType = pokemonData.types.map((type) => type.type.name).join(", ");
+  const pokemonHp = pokemonData?.stats?.[0].base_stat;
+  const pokemonType = pokemonData.types
+    .map((type) => type.type.name)
+    .join(", ");
+
+
 
   return (
     <div className="form-content">

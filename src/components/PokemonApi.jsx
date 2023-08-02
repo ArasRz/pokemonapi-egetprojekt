@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
 
+// This is called smart component or stateful component
 function PokemonApi() {
-  const [pokemonData, setPokemonData] = useState("");
+  const [pokemonData, setPokemonData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
   const fetchPokemonData = async () => {
@@ -10,7 +11,7 @@ function PokemonApi() {
       `https://pokeapi.co/api/v2/pokemon/${searchValue}`
     );
     const data = await response.json();
-    setPokemonData(data);
+    setPokemonData([data]);
   };
 
   const handleSearch = () => {
@@ -30,7 +31,10 @@ function PokemonApi() {
           Search
         </button>
       </div>
-      {pokemonData && <PokemonCard pokemonData={pokemonData} />}
+      {pokemonData.length > 0 &&
+        pokemonData.map((pokemon) => {
+          return <PokemonCard key={pokemon.id} pokemonData={pokemon} />;
+        })}
     </div>
   );
 }
